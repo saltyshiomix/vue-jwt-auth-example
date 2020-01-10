@@ -1,6 +1,6 @@
-import { users } from './fake-users';
+import users from './users';
 
-export function configureFakeFetch() {
+export const configureFakeFetch = () => {
   const originalFetch = window.fetch;
 
   window.fetch = (url: any, opts: any) => {
@@ -37,5 +37,5 @@ export function configureFakeFetch() {
         originalFetch(url, opts).then(response => resolve(response));
       }, 300);
     });
-  }
-}
+  };
+};

@@ -4,7 +4,7 @@ import store from './store';
 import App from './App.vue';
 
 if (process.env.NODE_ENV !== 'production') {
-  const { configureFakeFetch } = require('./helpers');
+  const { configureFakeFetch } = require('./faker');
   configureFakeFetch();
 }
 
