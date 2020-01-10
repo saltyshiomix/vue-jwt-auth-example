@@ -1,4 +1,15 @@
-import { authHeader } from '../helpers';
+const authHeader = (): { 'Authorization': string } | {} => {
+  const storaged = localStorage.getItem('user');
+  if (!storaged) {
+    return {};
+  }
+  let user = JSON.parse(storaged);
+  if (user && user.token) {
+    return { 'Authorization': 'Bearer ' + user.token };
+  } else {
+    return {};
+  }
+};
 
 const login = async (username: string, password: string): Promise<Response> => {
   const response = await fetch(`${process.env.VUE_APP_API_URL}/users/authenticate`, {
