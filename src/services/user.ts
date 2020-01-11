@@ -1,22 +1,31 @@
-const authHeader = (): { 'Authorization': string } | {} => {
+import { User } from '@/entities';
+
+const authHeader = (): { Authorization: string } | {} => {
   const storaged = localStorage.getItem('user');
   if (!storaged) {
     return {};
   }
-  let user = JSON.parse(storaged);
+  const user = JSON.parse(storaged);
   if (user && user.token) {
-    return { 'Authorization': 'Bearer ' + user.token };
+    return { Authorization: 'Bearer ' + user.token };
   } else {
     return {};
   }
 };
 
+const logout = (): void => {
+  localStorage.removeItem('user');
+};
+
 const login = async (username: string, password: string): Promise<Response> => {
-  const response = await fetch(`${process.env.VUE_APP_API_URL}/users/authenticate`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ username, password })
-  });
+  const response = await fetch(
+    `${process.env.VUE_APP_API_URL}/users/authenticate`,
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, password }),
+    },
+  );
   const json = await response.json();
 
   if (!response.ok) {
@@ -34,13 +43,9 @@ const login = async (username: string, password: string): Promise<Response> => {
   }
 
   return user;
-}
+};
 
-const logout = () => {
-  localStorage.removeItem('user');
-}
-
-const getAllUsers = async () => {
+const getAllUsers = async (): Promise<User[]> => {
   const response = await fetch(`${process.env.VUE_APP_API_URL}/users`, {
     method: 'GET',
     headers: authHeader(),
@@ -57,7 +62,7 @@ const getAllUsers = async () => {
   }
 
   return json;
-}
+};
 
 export const userService = {
   login,

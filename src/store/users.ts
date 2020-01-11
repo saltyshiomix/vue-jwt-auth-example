@@ -1,29 +1,34 @@
+import { Module } from 'vuex';
+import { RootState, UsersState } from './interfaces';
 import { userService } from '../services';
 
-export const users = {
+export const users: Module<UsersState, RootState> = {
   namespaced: true,
   state: {
-    all: {}
+    loading: false,
+    users: [],
+    error: undefined,
   },
   actions: {
-    getAllUsers({ commit }: any) {
-      commit('getAllRequest');
-      userService.getAllUsers()
-        .then(
-          users => commit('getAllSuccess', users),
-          error => commit('getAllFailure', error),
-        );
-    }
+    getAllUsers({ commit }): void {
+      commit('getAllUsersRequest');
+      userService.getAllUsers().then(
+        (users) => commit('getAllUsersSuccess', users),
+        (error) => commit('getAllUsersFailure', error),
+      );
+    },
   },
   mutations: {
-    getAllRequest(state: any) {
-      state.all = { loading: true };
+    getAllUsersRequest(state): void {
+      state.loading = true;
     },
-    getAllSuccess(state: any, users: any[]) {
-      state.all = { items: users };
+    getAllUsersSuccess(state, users): void {
+      state.users = users;
+      state.loading = false;
     },
-    getAllFailure(state: any, error: any) {
-      state.all = { error };
-    }
-  }
-}
+    getAllUsersFailure(state, error): void {
+      state.error = error;
+      state.loading = false;
+    },
+  },
+};

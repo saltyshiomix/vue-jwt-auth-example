@@ -1,62 +1,67 @@
+import { Module } from 'vuex';
+import { RootState, AuthState } from './interfaces';
 import { userService } from '../services';
 import router from '../router';
 
 let initialState = {
-  status: {},
+  loggingIn: false,
+  loggedIn: false,
   user: undefined,
 };
+
 const storaged = localStorage.getItem('user');
+
 if (storaged) {
   const user = JSON.parse(storaged);
   if (user) {
     initialState = {
-      status: {
-        loggedIn: true,
-      },
+      loggingIn: false,
+      loggedIn: true,
       user,
     };
   }
 }
 
-export const auth = {
+export const auth: Module<AuthState, RootState> = {
   namespaced: true,
   state: initialState,
   actions: {
-    login({ dispatch, commit }: any, { username, password }: any) {
+    login({ dispatch, commit }, { username, password }): void {
       commit('loginRequest', { username });
-      userService.login(username, password)
-        .then(
-          user => {
-            commit('loginSuccess', user);
-            router.push('/');
-          },
-          error => {
-            commit('loginFailure', error);
-            dispatch('alert/error', error, { root: true });
-          },
-        );
+      userService.login(username, password).then(
+        (user) => {
+          commit('loginSuccess', user);
+          router.push('/');
+        },
+        (error: Error) => {
+          commit('loginFailure', error);
+          dispatch('alert/error', error, { root: true });
+        },
+      );
     },
-    logout({ commit }: any) {
+    logout({ commit }): void {
       userService.logout();
       commit('logout');
     },
   },
   mutations: {
-    loginRequest(state: any, user: any) {
-      state.status = { loggingIn: true };
+    loginRequest(state, user): void {
+      state.loggingIn = true;
       state.user = user;
     },
-    loginSuccess(state: any, user: any) {
-      state.status = { loggedIn: true };
+    loginSuccess(state, user): void {
+      state.loggedIn = true;
       state.user = user;
     },
-    loginFailure(state: any) {
-      state.status = {};
-      state.user = null;
+    loginFailure(state): void {
+      state.loggingIn = false;
+      state.loggedIn = false;
+      state.user = undefined;
     },
-    logout(state: any) {
-      state.status = {};
-      state.user = null;
+    logout(state): void {
+      state.loggingIn = false;
+      state.loggedIn = false;
+      state.user = undefined;
     },
   },
 };

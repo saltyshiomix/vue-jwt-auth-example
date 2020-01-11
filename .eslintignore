@@ -1,2 +1,4 @@
 node_modules
 dist
+vue.config.js
+*.d.ts

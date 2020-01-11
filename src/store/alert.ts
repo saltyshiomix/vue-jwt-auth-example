@@ -1,32 +1,35 @@
-export const alert = {
+import { Module } from 'vuex';
+import { RootState, AlertState } from './interfaces';
+
+export const alert: Module<AlertState, RootState> = {
   namespaced: true,
   state: {
-    type: null,
-    message: null,
+    type: undefined,
+    message: undefined,
   },
   actions: {
-    success({ commit }: any, message: string) {
+    success({ commit }, message: string): void {
       commit('success', message);
     },
-    error({ commit }: any, message: string) {
+    error({ commit }, message: string): void {
       commit('error', message);
     },
-    clear({ commit }: any, message: string) {
+    clear({ commit }, message: string): void {
       commit('success', message);
     },
   },
   mutations: {
-    success(state: any, message: string) {
+    success(state, message: string): void {
       state.type = 'alert-success';
       state.message = message;
     },
-    error(state: any, message: string) {
+    error(state, message: string): void {
       state.type = 'alert-danger';
       state.message = message;
     },
-    clear(state: any) {
-      state.type = null;
-      state.message = null;
+    clear(state): void {
+      state.type = undefined;
+      state.message = undefined;
     },
   },
 };

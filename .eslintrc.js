@@ -19,7 +19,19 @@ module.exports = {
     'prettier/prettier': [
       'error',
       {
+        'tabWidth': 2,
         'singleQuote': true,
+        'trailingComma': 'all',
+        'arrowParens': 'always',
+      },
+    ],
+    'vue/html-self-closing': [
+      'error',
+      {
+        'html': {
+          'normal': 'never',
+          'void': 'always',
+        },
       },
     ],
     'vue/max-attributes-per-line': [
@@ -31,5 +43,29 @@ module.exports = {
         },
       },
     ],
+    'vue/comma-dangle': [
+      'error',
+      {
+        'arrays': 'only-multiline',
+        'objects': 'only-multiline',
+        'imports': 'only-multiline',
+        'exports': 'only-multiline',
+        'functions': 'never',
+      },
+    ],
+    '@typescript-eslint/explicit-function-return-type': 'off',
   },
+  'overrides': [
+    {
+      'files': [
+        '*.ts',
+        '*.tsx',
+      ],
+      'rules': {
+        '@typescript-eslint/explicit-function-return-type': [
+          'error',
+        ],
+      },
+    },
+  ],
 };
