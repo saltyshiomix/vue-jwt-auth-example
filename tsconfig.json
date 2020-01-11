@@ -11,16 +11,15 @@
       "scripthost"
     ],
     "strict": true,
+    "sourceMap": true,
     "importHelpers": true,
     "esModuleInterop": true,
-    // "allowSyntheticDefaultImports": true,
-    "sourceMap": true,
+    "baseUrl": ".",
     "paths": {
       "@/*": [
         "src/*"
       ]
     },
-    "baseUrl": ".",
     "types": [
       "webpack-env"
     ],
