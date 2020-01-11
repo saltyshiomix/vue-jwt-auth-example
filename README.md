@@ -11,6 +11,12 @@ $ yarn (or `npm install`)
 
 ## Usage
 
+### Linting
+
+```zsh
+$ yarn lint (or `npm run lint`)
+```
+
 ### Development Mode
 
 ```zsh
