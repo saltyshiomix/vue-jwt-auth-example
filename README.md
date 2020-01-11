@@ -42,6 +42,8 @@ location / {
 }
 ```
 
+For more information, please check out [HTML5 History Mode of Vue Router](https://router.vuejs.org/guide/essentials/history-mode.html).
+
 ## References
 
 [Vue CLI](https://cli.vuejs.org)
