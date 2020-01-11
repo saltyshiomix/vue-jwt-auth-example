@@ -3,7 +3,7 @@
   "name": "vue-jwt-auth-example",
   "license": "MIT",
   "scripts": {
-    "dev": "vue-cli-service serve --mode development",
+    "dev": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "start": "serve dist"
   },
