@@ -21,7 +21,7 @@ $ yarn lint (or `npm run lint`)
 
 ```zsh
 $ cp .env.example .env
-$ yarn dev
+$ yarn dev (or `npm run dev`)
 ```
 
 ### Production Build
