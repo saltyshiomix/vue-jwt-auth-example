@@ -24,16 +24,13 @@ $ cp .env.example .env
 $ yarn dev
 ```
 
-### Production Mode
+### Production Build
 
 ```zsh
 # first, write `.env` for production
 
 # then, build sources
 $ yarn build (or `npm run build`)
-
-# finally, serve dist directory
-$ yarn start (or `npm start`)
 ```
 
 ## Production Deployment
