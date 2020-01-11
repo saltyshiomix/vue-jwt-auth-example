@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="alert alert-info">
-      Username: testuser1<br />
-      Password: testpassword1
+      Username: user1<br />
+      Password: Pass1
     </div>
     <h2>Login</h2>
     <form @submit.prevent="handleSubmit">
