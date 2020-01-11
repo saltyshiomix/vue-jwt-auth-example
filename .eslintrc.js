@@ -11,8 +11,8 @@ module.exports = {
     'eslint:recommended',
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
+    'plugin:vue/strongly-recommended',
     'plugin:prettier/recommended',
-    'plugin:vue/recommended',
     'prettier/@typescript-eslint',
   ],
   rules: {
@@ -20,6 +20,15 @@ module.exports = {
       'error',
       {
         'singleQuote': true,
+      },
+    ],
+    'vue/max-attributes-per-line': [
+      'error', {
+        'singleline': 2,
+        'multiline': {
+          'max': 1,
+          'allowFirstLine': false,
+        },
       },
     ],
   },
