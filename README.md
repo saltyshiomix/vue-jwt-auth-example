@@ -30,6 +30,18 @@ $ yarn build (or `npm run build`)
 $ yarn start (or `npm start`)
 ```
 
+## Production Deployment
+
+Because this is a single page application, we must set rewrite rules in the server side.
+
+For example, an nginx config is like this:
+
+```
+location / {
+  try_files $uri $uri/ /index.html;
+}
+```
+
 ## References
 
 [Vue CLI](https://cli.vuejs.org)
