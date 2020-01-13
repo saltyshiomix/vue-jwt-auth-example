@@ -1,15 +1,34 @@
 <template>
   <div>
-    <h1>Hi {{ me.firstName }}!</h1>
-    <p>You're logged in with Vue + Vuex & JWT!!</p>
-    <h3>Users from secure api end point:</h3>
-    <em v-if="all.loading">Loading users...</em>
-    <span v-if="all.error" class="text-danger">ERROR: {{ all.error }}</span>
-    <ul v-if="all.users">
-      <li v-for="u in all.users" :key="u.id">
-        {{ u.firstName + ' ' + u.lastName }}
-      </li>
-    </ul>
+    <h1 class="title">Hi {{ me.firstName }}!</h1>
+    <h2 class="subtitle">
+      You're logged in with Vue + Vuex & JWT!!
+    </h2>
+    <nav class="panel">
+      <p class="panel-heading">
+        User List
+      </p>
+      <div v-if="all.users">
+        <p class="panel-block" v-for="u in all.users" :key="u.id">
+          <span class="panel-icon">
+            <i class="fa fa-user"></i>
+          </span>
+          {{ u.firstName + ' ' + u.lastName }}
+        </p>
+      </div>
+      <p class="panel-block" v-if="all.loading">
+        <span class="panel-icon">
+          <i class="fa fa-info"></i>
+        </span>
+        Loading...
+      </p>
+      <p class="panel-block" v-if="all.error">
+        <span class="panel-icon">
+          <i class="fa fa-exclamation-triangle"></i>
+        </span>
+        ERROR: {{ all.error }}
+      </p>
+    </nav>
     <p>
       <router-link to="/login">
         Logout

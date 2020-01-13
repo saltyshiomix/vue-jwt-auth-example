@@ -1,16 +1,16 @@
 <template>
-  <div class="jumbotron">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-6 offset-sm-3">
-          <div v-if="alert.message" :class="`alert ${alert.type}`">
+  <section class="hero is-default is-fullheight">
+    <div class="hero-body">
+      <div class="container">
+        <article class="message is-danger" v-if="alert.message">
+          <div class="message-body">
             {{ alert.message }}
           </div>
-          <router-view />
-        </div>
+        </article>
+        <router-view />
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -28,3 +28,9 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+.container {
+  max-width: 480px;
+}
+</style>

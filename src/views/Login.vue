@@ -1,56 +1,69 @@
 <template>
-  <div>
-    <div class="alert alert-info">
-      Username: user1<br />
-      Password: Pass1
-    </div>
-    <h2>Login</h2>
-    <form @submit.prevent="handleSubmit">
-      <div class="form-group">
-        <label for="username">Username</label>
+  <form @submit.prevent="handleSubmit">
+    <h1 class="title">Login</h1>
+    <div class="field">
+      <label class="label">Username</label>
+      <div class="control has-icons-left has-icons-right">
         <input
           v-model="username"
           type="text"
           name="username"
-          class="form-control"
-          :class="{ 'is-invalid': submitted && !username }"
+          class="input"
+          :class="{ 'is-danger': submitted && !username }"
         />
-        <div v-show="submitted && !username" class="invalid-feedback">
-          Username is required
-        </div>
+        <span class="icon is-small is-left">
+          <i class="fa fa-envelope"></i>
+        </span>
+        <span class="icon is-small is-right" v-show="submitted && !username">
+          <i class="fa fa-exclamation-triangle"></i>
+        </span>
       </div>
-      <div class="form-group">
-        <label htmlFor="password">Password</label>
+      <p class="help is-danger" v-show="submitted && !username">
+        Username is required
+      </p>
+    </div>
+    <div class="field">
+      <label class="label">Password</label>
+      <div class="control has-icons-left has-icons-right">
         <input
           v-model="password"
           type="password"
           name="password"
-          class="form-control"
-          :class="{ 'is-invalid': submitted && !password }"
+          class="input"
+          :class="{ 'is-danger': submitted && !password }"
         />
-        <div v-show="submitted && !password" class="invalid-feedback">
-          Password is required
-        </div>
+        <span class="icon is-small is-left">
+          <i class="fa fa-envelope"></i>
+        </span>
+        <span class="icon is-small is-right" v-show="submitted && !password">
+          <i class="fa fa-exclamation-triangle"></i>
+        </span>
       </div>
-      <div class="form-group">
-        <button class="btn btn-primary" :disabled="loggingIn">
+      <p class="help is-danger" v-show="submitted && !password">
+        Password is required
+      </p>
+    </div>
+    <br />
+    <div class="field">
+      <div class="control">
+        <button class="button is-link">
           Login
         </button>
-        <img
-          v-show="loggingIn"
-          src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
-        />
       </div>
-    </form>
-  </div>
+      <img
+        v-show="loggingIn"
+        src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+      />
+    </div>
+  </form>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      username: '',
-      password: '',
+      username: 'user1',
+      password: 'Pass1',
       submitted: false,
     };
   },
