@@ -35,7 +35,7 @@ module.exports = {
       },
     ],
     'vue/singleline-html-element-content-newline': [
-      'never',
+      'off',
     ],
     'vue/max-attributes-per-line': [
       'error', {
