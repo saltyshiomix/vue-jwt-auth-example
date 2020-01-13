@@ -7,7 +7,7 @@
 
 - [Vue](https://vuejs.org) + [Vuex](https://vuex.vuejs.org) + [JWT](https://jwt.io) Authentication
 - Fake API server when `process.env.NODE_ENV !== production`
-- [Bulma](https://bulma.io) for styling by using [Sass](https://sass-lang.com)
+- [Bulma](https://bulma.io) CSS styling by using [Sass](https://sass-lang.com)
 - [ESLint](https://eslint.org) with [TypeScript](https://www.typescriptlang.org)
 
 ## Installation
