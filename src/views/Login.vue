@@ -33,7 +33,7 @@
           :class="{ 'is-danger': submitted && !password }"
         />
         <span class="icon is-small is-left">
-          <i class="fa fa-envelope"></i>
+          <i class="fa fa-lock"></i>
         </span>
         <span class="icon is-small is-right" v-show="submitted && !password">
           <i class="fa fa-exclamation-triangle"></i>
