@@ -1,7 +1,14 @@
+<p align="center">
+  <img src="https://i.imgur.com/NOvIUVl.png">
+  <img src="https://i.imgur.com/RftS3im.png">
+</p>
+
 ## Overview
 
-- Vue + Vuex + JWT Authentication
+- [Vue](https://vuejs.org) + [Vuex](https://vuex.vuejs.org) + [JWT](https://jwt.io) Authentication
 - Fake API server when `process.env.NODE_ENV !== production`
+- [Bulma](https://bulma.io) for styling by using [Sass](https://sass-lang.com)
+- [ESLint](https://eslint.org) with [TypeScript](https://www.typescriptlang.org)
 
 ## Installation
 
